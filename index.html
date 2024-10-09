@@ -9,31 +9,32 @@
     <form class="p-3 border" onsubmit="validate();">        
       <div class="mb-3">
         <label for="name" class="form-label">Name:</label>
-        <input type="text" id="name" name="Name" placeholder="Enter your full name" class="form-control">
+        <input type="text" id="name" name="Name" placeholder="Enter your full name" class="form-control" autocomplete="off">
         <span id="name_error" class="text-danger"></span>
       </div>
 
       <div class="mb-3">
         <label for="email" class="form-label">E-mail Address:</label>
-        <input type="email" id="email" name="EMail" placeholder="Enter your email" class="form-control" required>
+        <input type="email" id="email" name="EMail" placeholder="Enter your email" class="form-control" required autocomplete="off">
         <span id="email_error" class="text-danger"></span>
       </div>
 
       <div class="mb-3">
         <label for="phone" class="form-label">Phone Number:</label>
-        <input type="tel" id="phone" name="Phone" placeholder="Enter your phone number" class="form-control">
+        <input type="tel" id="phone" name="Phone" placeholder="Enter your phone number" class="form-control" autocomplete="off">
         <span id="phone_error" class="text-danger"></span>
       </div>
 
       <div class="mb-3">
         <label for="newpassword" class="form-label">Enter Password:</label>
-        <input type="password" id="newpassword" name="newPassword" class="form-control">
-        <span id="password_error" class="text-danger"></span>
+        <input type="password" id="newpassword" name="newPassword" class="form-control" oninput="checkStrength()" autocomplete="off">
+        <span id="password_error" class="text-danger"></span>    
+        <span id="strength"></span>    
       </div>
 
        <div class="mb-3">
         <label for="confirmpassword" class="form-label">Confirm Password:</label>
-        <input type="password" id="confirmpassword" name="confirmPassword" class="form-control">
+        <input type="password" id="confirmpassword" name="confirmPassword" class="form-control" autocomplete="off">
         <span id="password_matcherror" class="text-danger"></span>
       </div>
 
@@ -91,6 +92,24 @@
            }
              
       }
+
+     function checkStrength()
+       {          
+        
+        let password = document.getElementById("newpassword").value;
+
+        if(/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,}$/.test(password))
+          {
+            document.getElementById("strength").style.color="green";
+            document.getElementById("strength").innerHTML="strong password";            
+          }
+         else
+          {
+            document.getElementById("strength").style.color="red";
+            document.getElementById("strength").innerHTML="weak password";
+          }
+
+       }
     </script>
   </body>
 </html>
